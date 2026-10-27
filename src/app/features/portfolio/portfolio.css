@@ -1,0 +1,210 @@
+/* portfolio.css */
+
+.port-section {
+  background: var(--c-bg);
+  padding: 7rem 1.5rem 0;
+}
+
+@media (min-width: 768px)  { .port-section { padding: 7rem 3.5rem 0; } }
+@media (min-width: 1280px) { .port-section { padding: 8rem 6rem 0; } }
+
+/* Header */
+.port-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 5rem;
+}
+
+.port-intro {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--c-muted);
+  line-height: 1.8;
+}
+
+/* ── Team grid ── */
+.port-team {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+}
+@media (min-width: 768px) { .port-team { grid-template-columns: repeat(3, 1fr); } }
+
+.port-card {
+  background: var(--c-bg3);
+  border: 1px solid rgba(184,150,80,0.15);
+  padding: 2.5rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.3s;
+}
+.port-card:hover { border-color: rgba(184,150,80,0.45); transform: translateY(-4px); }
+
+.port-avatar {
+  position: relative;
+  width: 7rem; height: 7rem;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(155deg, #141B2D 0%, #0F1420 100%);
+  border: 1px solid rgba(184,150,80,0.3);
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--c-gold-lt);
+}
+
+/* Corner frame accents */
+.port-frame-tl, .port-frame-br {
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: var(--c-gold);
+  border-style: solid;
+  pointer-events: none;
+}
+.port-frame-tl { top: -6px; left: -6px; border-width: 2px 0 0 2px; }
+.port-frame-br { bottom: -6px; right: -6px; border-width: 0 2px 2px 0; }
+
+.port-social-btn {
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(184,150,80,0.08);
+  border: 1px solid rgba(184,150,80,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-gold);
+  text-decoration: none;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+.port-social-btn:hover {
+  background: rgba(184,150,80,0.18);
+  border-color: var(--c-gold);
+  transform: translateY(-2px);
+}
+
+.port-name {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--c-cream);
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.port-designation {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-top: 0.4rem;
+}
+
+.port-bar {
+  width: 3rem; height: 2px;
+  background: var(--c-gold);
+  margin: 1rem auto;
+}
+
+.port-bio-para {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--c-muted);
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+
+.port-section-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 0.875rem;
+}
+
+/* Tags */
+.port-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+
+.port-tag {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  padding: 0.35rem 0.875rem;
+  border: 1px solid rgba(184,150,80,0.25);
+  color: var(--c-gold-lt);
+  background: rgba(184,150,80,0.06);
+  letter-spacing: 0.04em;
+  transition: background 0.25s, border-color 0.25s;
+}
+.port-tag:hover {
+  background: rgba(184,150,80,0.12);
+  border-color: rgba(184,150,80,0.5);
+}
+
+/* Expertise */
+.port-expertise {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 6rem;
+  text-align: center;
+}
+.port-expertise .port-tags { justify-content: center; }
+
+.port-cta { margin-top: 2.25rem; }
+
+/* ── Stats band ── */
+.port-stats-band {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: var(--c-bg3);
+  border-top: 1px solid rgba(184,150,80,0.12);
+  margin: 0 -1.5rem;
+}
+
+@media (min-width: 640px)  { .port-stats-band { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 768px)  { .port-stats-band { margin: 0 -3.5rem; } }
+@media (min-width: 1280px) { .port-stats-band { margin: 0 -6rem; } }
+
+.port-stat {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-right: 1px solid rgba(184,150,80,0.1);
+  border-bottom: 1px solid rgba(184,150,80,0.1);
+  transition: background 0.3s;
+}
+.port-stat:hover { background: rgba(184,150,80,0.04); }
+
+.port-stat-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--c-gold-lt);
+  line-height: 1;
+}
+
+.port-stat-lbl {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-top: 0.5rem;
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .port-section { padding: 4.5rem 1.25rem 0; }
+  .port-header { margin-bottom: 3rem; }
+  .port-team { gap: 1.25rem; margin-bottom: 3.5rem; }
+  .port-card { padding: 2rem 1.25rem 1.75rem; }
+  .port-avatar { width: 5.5rem; height: 5.5rem; font-size: 1.8rem; margin-bottom: 1.25rem; }
+  .port-expertise { padding-bottom: 4rem; }
+  .port-tag { font-size: 0.64rem; padding: 0.3rem 0.7rem; }
+  .port-cta { width: 100%; justify-content: center; }
+  .port-stats-band { margin: 0 -1.25rem; }
+  .port-stat { padding: 1.75rem 1rem; }
+  .port-stat-num { font-size: 1.9rem; }
+}

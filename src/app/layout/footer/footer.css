@@ -1,0 +1,86 @@
+/* footer.css */
+.site-footer { background: #070B14; overflow: hidden; }
+
+.footer-top-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #B89650 30%, #B89650 70%, transparent);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding: 4rem 1.5rem;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px)  { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; padding: 5rem 6rem; gap: 4rem; } }
+
+/* Brand */
+.footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.footer-logo-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--c-cream); line-height: 1.2; }
+.footer-logo-sub { font-family: var(--font-body); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-gold); margin-top: 0.1rem; }
+.footer-brand-text { font-family: var(--font-body); font-size: 0.8rem; color: var(--c-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+
+.footer-free { font-size: 0.95rem; font-weight: 600; color: var(--c-gold-lt); }
+.footer-free-en { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-muted); margin-top: 0.3rem; }
+
+/* Columns */
+.footer-col-title { font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-gold); margin-bottom: 1.25rem; }
+.footer-links-list { display: flex; flex-direction: column; gap: 0.625rem; }
+.footer-link { font-family: var(--font-body); font-size: 0.78rem; color: var(--c-muted); text-decoration: none; transition: color 0.2s, padding-left 0.2s; display: block; }
+.footer-link:hover { color: var(--c-gold-lt); padding-left: 6px; }
+
+/* Contact */
+.footer-contact-list { display: flex; flex-direction: column; gap: 0.875rem; }
+.footer-contact-item { display: flex; align-items: flex-start; gap: 0.625rem; font-family: var(--font-body); font-size: 0.75rem; color: var(--c-muted); line-height: 1.55; }
+.footer-contact-item a { color: rgba(237,232,223,0.65); text-decoration: none; transition: color 0.2s; }
+.footer-contact-item a:hover { color: var(--c-gold-lt); }
+.footer-contact-item svg { flex-shrink: 0; margin-top: 2px; }
+
+/* Bottom */
+.footer-bottom { border-top: 1px solid rgba(184,150,80,0.1); padding: 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; text-align: center; font-family: var(--font-body); font-size: 0.7rem; color: rgba(237,232,223,0.3); }
+@media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; padding: 1.5rem 6rem; text-align: left; } }
+.footer-disc { font-style: italic; font-size: 0.62rem; color: rgba(237,232,223,0.2); }
+
+/* FABs */
+.fab-group { position: fixed; left: 1.25rem; bottom: 1.75rem; display: flex; flex-direction: column; gap: 0.625rem; z-index: 200; }
+.fab { width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.25s, box-shadow 0.25s; text-decoration: none; }
+.fab svg { fill: #fff; }
+.fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(0,0,0,0.5); }
+.fab-call { background: var(--c-gold); }
+.fab-wa { background: #25D366; }
+
+/* Enquire tab */
+.enquire-tab {
+  position: fixed;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  background: var(--c-gold);
+  color: var(--c-bg) !important;
+  padding: 0.55rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  z-index: 200;
+  white-space: nowrap;
+  box-shadow: -4px 0 14px rgba(0,0,0,0.35);
+  transition: right 0.3s ease, background 0.25s;
+}
+.enquire-tab:hover { right: -30px; background: var(--c-gold-lt); }
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .footer-grid { padding: 3.5rem 1.25rem; gap: 2.5rem; }
+  /* room so the floating buttons don't cover the copyright line */
+  .footer-bottom { padding-bottom: 8.5rem; }
+  .enquire-tab { display: none; }
+  .fab-group { left: auto; right: 1rem; bottom: 1rem; }
+  .fab { width: 2.9rem; height: 2.9rem; }
+}

@@ -1,0 +1,156 @@
+<!-- admin.html — consultation bookings (private) -->
+<div class="adm">
+  <header class="adm-bar">
+    <a href="/" class="adm-brand">
+      <span class="adm-brand-name">SMS Law Associates</span>
+      <span class="adm-brand-sub">Admin · Bookings</span>
+    </a>
+    @if (view() === 'list') {
+      <button class="adm-btn adm-btn--ghost" (click)="logout()">Log out</button>
+    }
+  </header>
+
+  @switch (view()) {
+    @case ('checking') {
+      <p class="adm-muted adm-center">Loading…</p>
+    }
+
+    @case ('login') {
+      <form class="adm-login" (submit)="$event.preventDefault(); login()">
+        <h1 class="adm-title">Admin Login</h1>
+        <p class="adm-muted">Enter the admin password to view consultation bookings.</p>
+        <label class="adm-label" for="pw">Password</label>
+        <input id="pw" class="adm-input" type="password" autocomplete="current-password" required
+               [value]="password" (input)="password = $any($event.target).value">
+        @if (error()) { <div class="adm-error" role="alert">{{ error() }}</div> }
+        <button class="adm-btn" type="submit" [disabled]="loading()">
+          {{ loading() ? 'Checking…' : 'Log in' }}
+        </button>
+      </form>
+    }
+
+    @case ('list') {
+      <main class="adm-main">
+        <div class="adm-head">
+          <h1 class="adm-title">Consultation Bookings</h1>
+          <div class="adm-actions">
+            <button class="adm-btn adm-btn--ghost" (click)="refresh()" [disabled]="loading()">
+              {{ loading() ? 'Loading…' : 'Refresh' }}
+            </button>
+            <button class="adm-btn adm-btn--ghost" (click)="exportCsv()" [disabled]="!result().total">Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Status tabs with counts -->
+        <div class="adm-tabs" role="tablist">
+          <button class="adm-tab" [class.adm-tab--on]="status() === ''" (click)="setStatusTab('')">
+            All <span>{{ counts().ALL }}</span>
+          </button>
+          @for (s of statuses; track s) {
+            <button class="adm-tab" [class.adm-tab--on]="status() === s" (click)="setStatusTab(s)">
+              {{ statusLabel[s] }} <span>{{ counts()[s] }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Search, filters, sort -->
+        <div class="adm-filters">
+          <input class="adm-input adm-search" type="search" placeholder="Search name, phone, email, matter…"
+                 aria-label="Search bookings"
+                 [value]="search()" (input)="onSearch($any($event.target).value)">
+
+          <select class="adm-input" aria-label="Practice area"
+                  (change)="area.set($any($event.target).value); applyFilters()">
+            <option value="" [selected]="!area()">All practice areas</option>
+            @for (a of areas; track a) { <option [value]="a" [selected]="area() === a">{{ a }}</option> }
+          </select>
+
+          <label class="adm-date">
+            <span>From</span>
+            <input class="adm-input" type="date" [value]="from()" (change)="from.set($any($event.target).value); applyFilters()">
+          </label>
+          <label class="adm-date">
+            <span>To</span>
+            <input class="adm-input" type="date" [value]="to()" (change)="to.set($any($event.target).value); applyFilters()">
+          </label>
+
+          <select class="adm-input" aria-label="Sort by" (change)="setSortOption(+$any($event.target).value)">
+            @for (o of sortOptions; track o.label; let i = $index) {
+              <option [value]="i" [selected]="sortIndex() === i">Sort: {{ o.label }}</option>
+            }
+          </select>
+
+          @if (hasFilters()) {
+            <button class="adm-clear" (click)="clearFilters()">Clear filters</button>
+          }
+        </div>
+
+        @if (error()) { <div class="adm-error" role="alert">{{ error() }}</div> }
+
+        <p class="adm-muted adm-summary">
+          {{ result().total }} booking{{ result().total === 1 ? '' : 's' }}{{ hasFilters() ? ' match your filters' : '' }}
+        </p>
+
+        @if (!result().items.length) {
+          <p class="adm-muted adm-center">
+            {{ hasFilters() ? 'No bookings match your filters.' : 'No bookings yet. New requests from the website will appear here.' }}
+          </p>
+        } @else {
+          <div class="adm-list" [class.adm-list--busy]="loading()">
+            <div class="adm-row adm-row--head">
+              <button (click)="sortBy('createdAt')">Received {{ arrow('createdAt') }}</button>
+              <button (click)="sortBy('name')">Client {{ arrow('name') }}</button>
+              <button (click)="sortBy('area')">Matter {{ arrow('area') }}</button>
+              <button (click)="sortBy('status')">Status {{ arrow('status') }}</button>
+              <span></span>
+            </div>
+
+            @for (b of result().items; track b.id) {
+              <article class="adm-row" [attr.data-status]="b.status">
+                <div class="adm-when">
+                  {{ b.createdAt | date: 'dd MMM yyyy' }}
+                  <small>{{ b.createdAt | date: 'h:mm a' }}</small>
+                </div>
+                <div class="adm-client">
+                  <strong>{{ b.name }}</strong>
+                  <a [href]="'tel:' + b.phone">{{ b.phone }}</a>
+                  <a [href]="whatsapp(b.phone)" target="_blank" rel="noopener" class="adm-wa">WhatsApp</a>
+                  @if (b.email) { <a [href]="'mailto:' + b.email" class="adm-email">{{ b.email }}</a> }
+                </div>
+                <div class="adm-matter">
+                  @if (b.area) { <span class="adm-chip">{{ b.area }}</span> }
+                  @if (b.message) { <p>{{ b.message }}</p> }
+                </div>
+                <div class="adm-state">
+                  <select class="adm-input adm-status" [attr.data-status]="b.status"
+                          (change)="setStatus(b, $any($event.target).value)"
+                          [attr.aria-label]="'Status for ' + b.name">
+                    @for (s of statuses; track s) {
+                      <option [value]="s" [selected]="s === b.status">{{ statusLabel[s] }}</option>
+                    }
+                  </select>
+                  @if (b.status === 'COMPLETED') {
+                    <small class="adm-done">✓ Completed {{ b.completedAt | date: 'dd MMM, h:mm a' }}</small>
+                  } @else {
+                    <button class="adm-complete" (click)="markCompleted(b)">✓ Mark completed</button>
+                  }
+                </div>
+                <div class="adm-del-wrap">
+                  <button class="adm-del" (click)="remove(b)" [attr.aria-label]="'Delete booking from ' + b.name">Delete</button>
+                </div>
+              </article>
+            }
+          </div>
+
+          @if (result().totalPages > 1) {
+            <nav class="adm-pager" aria-label="Pages">
+              <button class="adm-btn adm-btn--ghost" [disabled]="page() === 0" (click)="goToPage(page() - 1)">← Prev</button>
+              <span>Page {{ page() + 1 }} of {{ result().totalPages }}</span>
+              <button class="adm-btn adm-btn--ghost" [disabled]="page() >= result().totalPages - 1" (click)="goToPage(page() + 1)">Next →</button>
+            </nav>
+          }
+        }
+      </main>
+    }
+  }
+</div>

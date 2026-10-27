@@ -1,0 +1,85 @@
+<!-- footer.html -->
+<footer class="site-footer">
+  <div class="footer-top-line"></div>
+
+  <div class="footer-grid">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg width="38" height="38" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="#B89650" stroke-width="1.5"/>
+          <line x1="24" y1="10" x2="24" y2="38" stroke="#B89650" stroke-width="1.2"/>
+          <line x1="12" y1="18" x2="36" y2="18" stroke="#B89650" stroke-width="1.2"/>
+          <line x1="12" y1="18" x2="12" y2="26" stroke="#B89650" stroke-width="1"/>
+          <line x1="36" y1="18" x2="36" y2="26" stroke="#B89650" stroke-width="1"/>
+          <ellipse cx="12" cy="27" rx="6" ry="2.5" stroke="#B89650" stroke-width="1"/>
+          <ellipse cx="36" cy="27" rx="6" ry="2.5" stroke="#B89650" stroke-width="1"/>
+        </svg>
+        <div>
+          <div class="footer-logo-name">SMS Law Associates</div>
+          <div class="footer-logo-sub">Justice · Trust · Solutions</div>
+        </div>
+      </div>
+      <p class="footer-brand-text">
+        A team of three advocates in Ammapet, Salem, offering honest counsel and
+        dedicated representation in civil, criminal, property and family matters.
+      </p>
+      <div class="footer-free" lang="ta">இலவச சட்ட ஆலோசனை மையம்</div>
+      <div class="footer-free-en">Free Legal Advice Centre</div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Quick Links</h4>
+      <ul class="footer-links-list">
+        @for (l of quickLinks; track l.label) {
+          <li><a [href]="l.href" class="footer-link">{{ l.label }}</a></li>
+        }
+      </ul>
+    </div>
+
+    <!-- Practice Areas -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Practice Areas</h4>
+      <ul class="footer-links-list">
+        @for (a of areas; track a) {
+          <li><a href="#practice-areas" class="footer-link">{{ a }}</a></li>
+        }
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Contact Us</h4>
+      <div class="footer-contact-list">
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="#B89650" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>6/1C, Arunachalam Street, Ammapet, Salem – 636003</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="#B89650" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          <a href="tel:+919345170567">(+91) 93451 70567</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <span>© {{ year }} SMS Law Associates, Salem. All rights reserved.</span>
+    <span class="footer-disc">This website is for informational purposes only and does not constitute legal advice.</span>
+  </div>
+</footer>
+
+<!-- Fixed FABs -->
+<div class="fab-group">
+  <a href="tel:+919345170567" class="fab fab-call" aria-label="Call">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+  </a>
+  <a href="https://wa.me/919345170567" target="_blank" rel="noopener" class="fab fab-wa" aria-label="WhatsApp">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 01-4.8-1.31l-.34-.2-3.57.94.95-3.48-.22-.36a9.42 9.42 0 01-1.45-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.37 9.37 0 012.76 6.68c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.47A11.3 11.3 0 0012.05.7C5.79.7.7 5.79.7 12.05c0 2 .52 3.95 1.52 5.67L.6 23.6l6.02-1.58a11.33 11.33 0 005.42 1.38h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02z"/></svg>
+  </a>
+</div>
+
+<!-- Enquire Now side tab -->
+<a href="#contact" class="enquire-tab">Enquire Now</a>

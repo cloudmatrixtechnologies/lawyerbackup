@@ -1,0 +1,77 @@
+<!-- practice-areas.html -->
+<section id="practice-areas" class="pa-section">
+  <div class="pa-layout">
+
+    <!-- Left sticky label panel -->
+    <div class="pa-left">
+      <div class="pa-left-inner">
+        <div class="eyebrow">Practice Areas</div>
+        <h2 class="section-heading pa-heading">
+          Expert Legal<br>Solutions Across<br><em class="italic-gold">Every Domain</em>
+        </h2>
+        <div class="gold-divider"></div>
+        <p class="pa-sub">
+          Our team of advocates offers practical legal solutions tailored to
+          your needs — from civil and criminal cases to property and family matters.
+        </p>
+        <a href="#contact" class="btn-primary pa-cta">
+          Get Legal Help
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: areas grid -->
+    <div class="pa-right">
+      @for (area of areas; track area.title) {
+        <div class="pa-item reveal">
+          <div class="pa-item-icon">
+            @switch (area.icon) {
+              @case ('shield') {
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="#B89650"/>
+                </svg>
+              }
+              @case ('scale') {
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 006 0zM17 7l-3 7a3 3 0 006 0z" stroke="#B89650" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              }
+              @case ('house') {
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#B89650"/>
+                </svg>
+              }
+              @case ('people') {
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M16 11c1.66 0 3-1.34 3-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="#B89650"/>
+                </svg>
+              }
+              @case ('gavel') {
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 6.5l-4-4-10 10-2 6 6-2 10-10zm-14.12 9.54l-1.41-1.41 8.46-8.46 1.41 1.41-8.46 8.46z" fill="#B89650"/>
+                </svg>
+              }
+              @case ('info') {
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#B89650"/>
+                </svg>
+              }
+            }
+          </div>
+          <div class="pa-item-body">
+            <h3 class="pa-item-title">{{ area.title }}</h3>
+            <p class="pa-item-desc">{{ area.desc }}</p>
+          </div>
+          <div class="pa-item-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B89650" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

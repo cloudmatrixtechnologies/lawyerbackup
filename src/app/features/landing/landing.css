@@ -1,0 +1,6 @@
+/* landing.css */
+/* Global styles live in src/styles.css */
+
+:host {
+  display: block;
+}

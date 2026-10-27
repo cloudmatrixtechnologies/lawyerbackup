@@ -1,0 +1,94 @@
+<!-- home.html -->
+<section id="home" class="hero">
+
+  <!-- Left content panel -->
+  <div class="hero-left">
+    <div class="hero-left-inner">
+
+      <!-- Eyebrow -->
+      <div class="hero-eyebrow reveal">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-tag">SMS Law Associates · Salem</span>
+        <span class="eyebrow-line"></span>
+      </div>
+
+      <!-- Animated cycling headline — inspired by aglaw.in -->
+      <div class="hero-headline reveal reveal-delay-1">
+        <span class="headline-static">Justice That</span>
+        <div class="headline-cycle-wrap">
+          <div class="headline-cycle" [style.transform]="'translateY(-' + (cycleIdx * 100) + '%)'">
+            <span class="headline-cycle-item italic-gold">Speaks for You</span>
+            <span class="headline-cycle-item italic-gold">Stands for Truth</span>
+            <span class="headline-cycle-item italic-gold">Fights for Rights</span>
+            <span class="headline-cycle-item italic-gold">Speaks for You</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub -->
+      <p class="hero-sub reveal reveal-delay-2">
+        Advocates R. Sasidharan, V. Mithuna and R. Susindran offer trusted legal
+        counsel in civil, criminal, property and family matters — with honest advice,
+        clear communication and dedicated representation for every client in Salem.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#contact" class="btn-primary">
+          Book a Consultation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#practice-areas" class="btn-ghost">Our Practice Areas</a>
+      </div>
+
+      <!-- Stats row — counters animate on load -->
+      <div class="hero-stats reveal reveal-delay-4">
+        @for (s of stats; track s.label) {
+          <div class="stat-block">
+            <div class="stat-num">{{ s.display }}</div>
+            <div class="stat-lbl">{{ s.label }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel — firm monogram -->
+  <div class="hero-right">
+    <div class="hero-img-frame">
+
+      <div class="hero-portrait-placeholder">
+        <div class="portrait-icon">
+          <p class="portrait-brand">SMS</p>
+          <p class="portrait-hint">Law Associates</p>
+          <p class="portrait-hint-sub">Justice · Trust · Solutions</p>
+        </div>
+      </div>
+      <!-- Free legal advice badge -->
+      <div class="hero-badge">
+        <span class="badge-num">Free</span>
+        <span class="badge-txt">Legal Advice<br>Centre</span>
+      </div>
+      <!-- Decorative scale -->
+      <div class="hero-deco-scale" aria-hidden="true">
+        <svg width="200" height="200" viewBox="0 0 120 120" fill="none" opacity="0.07">
+          <line x1="60" y1="8" x2="60" y2="112" stroke="#B89650" stroke-width="2"/>
+          <line x1="8" y1="28" x2="112" y2="28" stroke="#B89650" stroke-width="2"/>
+          <line x1="8" y1="28" x2="8" y2="56" stroke="#B89650" stroke-width="1.5"/>
+          <line x1="112" y1="28" x2="112" y2="56" stroke="#B89650" stroke-width="1.5"/>
+          <ellipse cx="8" cy="58" rx="14" ry="5" stroke="#B89650" stroke-width="1.5"/>
+          <ellipse cx="112" cy="58" rx="14" ry="5" stroke="#B89650" stroke-width="1.5"/>
+          <circle cx="60" cy="8" r="4" fill="#B89650"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span class="scroll-line"></span>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
