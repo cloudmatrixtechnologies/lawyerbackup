@@ -6,26 +6,26 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { existsSync } from 'node:fs';
-import { request } from 'node:http';
+import { request as httpRequest } from 'node:http';
+import { request as httpsRequest } from 'node:https';
 import { join } from 'node:path';
 
 // Local config (NG_ALLOWED_HOSTS, API_URL) — real env vars take precedence
 if (existsSync('.env')) process.loadEnvFile('.env');
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
-const apiUrl = process.env['API_URL'] || 'http://127.0.0.1:8080'||'https://lawyerbackup.onrender.com';
+const apiUrl = process.env['API_URL'] || 'https://lawyerbackup.onrender.com';
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Forward /api/* to the Spring Boot bookings service (lawyer/lawyer).
- * Same origin for the browser, so the admin session cookie stays SameSite=Strict
- * and no CORS is needed.
+ * Forward /api/* to the Spring Boot bookings service.
  */
 app.use('/api', (req, res) => {
   const target = new URL(req.originalUrl, apiUrl);
-  const proxy = request(target, {
+  const requester = target.protocol === 'https:' ? httpsRequest : httpRequest;
+  const proxy = requester(target, {
     method: req.method,
     headers: { ...req.headers, host: target.host, 'x-forwarded-for': req.ip || '' },
   }, (upstream) => {
