@@ -1,8 +1,7 @@
-FROM maven:3.9.9-eclipse-temurin-25 AS build
+FROM eclipse-temurin:25-jdk AS build
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
+COPY . .
+RUN if [ -f mvnw ]; then sed -i 's/\r$//' mvnw && chmod +x mvnw && ./mvnw clean package -DskipTests; else apt-get update && apt-get install -y maven && mvn clean package -DskipTests; fi
 
 FROM eclipse-temurin:25-jre
 WORKDIR /app
