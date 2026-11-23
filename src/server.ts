@@ -14,7 +14,7 @@ import { join } from 'node:path';
 if (existsSync('.env')) process.loadEnvFile('.env');
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
-const apiUrl = process.env['API_URL'] || 'https://lawyerbackup.onrender.com';
+const apiUrl = process.env['API_URL'] || 'http://127.0.0.1:8080';
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
